@@ -21,8 +21,8 @@ class UserControl {
   }
 
   async userLog(req, res) {
-    const { password, email } = req.body;
-    const data = await this.userService.userLogin(password, email);
+    const { password } = req.body;
+    const data = await this.userService.userLogin(password);
     res.json(data.rows);
   }
 }
