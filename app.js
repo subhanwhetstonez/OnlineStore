@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const bcrypt = require("bcrypt");
 const { Pool } = require("./modules/db.js");
 const UserRoute = require("./routes/users.js");
 const ProductRoute = require("./routes/products.js");
@@ -20,6 +21,9 @@ app.use("/item", ItemRoute);
 
 app.get("/user/login", (req, res) => {
   res.render("pages/login");
+});
+app.get("/user/register", (req, res) => {
+  res.render("pages/register");
 });
 
 app.listen(5000, (req, res) => {
