@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "node": "^20.15.0",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "name": "onlinestore",
+  "version": "1.0.0",
+  "description": "crud online store",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/subhanwhetstonez/Online_Store.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
