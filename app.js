@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const bcrypt = require("bcrypt");
 const flatten = require("array-flatten");
 const { Pool } = require("./modules/db.js");
 const UserRoute = require("./routes/users.js");
