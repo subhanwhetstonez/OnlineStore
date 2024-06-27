@@ -33,17 +33,32 @@
   <body>
     <h1>REGISTER HERE</h1>
     <br />
-    <form action="/users/register" method="POST">
-      <label>Enter Username</label>
+    <form id="registerForm" action="/user/register" method="POST">
+      <label for="username">Enter Username</label>
       <br />
-      <input type="text" placeholder="Enter your registered email" />
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+      />
       <br />
-      <label>Enter Email</label>
+      <label for="email">Enter Email</label>
       <br />
-      <input type="email" placeholder="Enter your registered password" /><br />
-      <label>Enter Password</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+      /><br />
+      <label for="password">Enter Password</label>
       <br />
-      <input type="password" placeholder="Enter your registered password" />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+      />
       <br /><br />
       <button type="submit">REGISTER</button>
       <br /><br />

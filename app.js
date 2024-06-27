@@ -7,6 +7,7 @@ const UserRoute = require("./routes/users.js");
 const ProductRoute = require("./routes/products.js");
 const OrderRoute = require("./routes/order.js");
 const ItemRoute = require("./routes/item.js");
+const verifyToken = require("./middleware/auth.js");
 
 app.use(express.json());
 app.set("view engine", "ejs");
@@ -20,13 +21,13 @@ app.use("/product", ProductRoute);
 app.use("/order", OrderRoute);
 app.use("/item", ItemRoute);
 
-app.get("/user/login", (req, res) => {
-  res.render("pages/login");
-});
+// app.get("/user/login", (req, res) => {
+//   res.render("pages/login");
+// });
 app.get("/user/register", (req, res) => {
   res.render("pages/register");
 });
-app.get("/user/dashboard", (req, res) => {
+app.get("/user/dashboard", verifyToken, (req, res) => {
   res.render("pages/dashboard");
 });
 

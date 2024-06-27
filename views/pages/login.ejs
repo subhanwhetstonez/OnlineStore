@@ -33,14 +33,24 @@
   <body>
     <h1>LOGIN HERE</h1>
     <br />
-    <form action="/users/loginn" method="post">
+    <form id="LoginForm" action="/user/login" method="post">
       <label>Enter Email</label>
       <br />
-      <input type="text" placeholder="Enter your registered email" />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your registered email"
+      />
       <br /><br /><br />
       <label>Enter Password</label>
       <br />
-      <input type="text" placeholder="Enter your registered password" />
+      <input
+        type="text"
+        id="password"
+        name="password"
+        placeholder="Enter your registered password"
+      />
       <br /><br />
       <button type="submit">LOGIN</button>
       <br /><br />
@@ -48,5 +58,42 @@
         >Haven't Registered? No worries Click here to register</a
       >
     </form>
+    <script>
+      console.log(`req.url`);
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const formData = new FormData(this);
+          const email = formData.get("email");
+          const password = formData.get("password");
+
+          try {
+            const response = await fetch("/user/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, password }),
+            });
+
+            if (!response.ok) {
+              throw new Error("Login failed");
+            }
+
+            const data = await response.json();
+            const token = data.token;
+
+            // Store the token securely (e.g., in localStorage)
+            localStorage.setItem("token", token);
+
+            // Redirect or navigate to the dashboard page
+            window.location.href = "/user/dashboard";
+          } catch (error) {
+            console.error("Login error:", error);
+            // Handle error (e.g., display an error message)
+          }
+        });
+    </script>
   </body>
 </html>

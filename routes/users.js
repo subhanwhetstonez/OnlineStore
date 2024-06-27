@@ -11,6 +11,11 @@ router.route("/").get(UserControl.userShow);
 
 router.route("/register").post(UserControl.userPut);
 
-router.post("/loginn", UserControl.userLog);
+router
+  .route("/login")
+  .get((req, res) => {
+    res.render("pages/login");
+  })
+  .post(UserControl.userLog);
 
 module.exports = router;
