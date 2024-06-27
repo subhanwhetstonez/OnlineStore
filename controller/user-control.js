@@ -1,3 +1,4 @@
+const { hash } = require("crypto");
 const UserServices = require("../services/uservice.js");
 const bcrypt = require("bcrypt");
 
@@ -17,13 +18,14 @@ class UserControl {
 
   async userPut(req, res) {
     const { username, password, email } = req.body;
-    const data = await this.userService.userInput(username, password, email);
-    if (email != 0) {
-      const hashed = await bcrypt.hash(password, 10);
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(password, salt);
+    if (data.rows.length < 0) {
+      const data = await this.userService.userInput(username, hashed, email);
       console.log(hashed);
       res.json(data.rows);
     } else {
-      res.json("The EMAIL has already registered");
+      res.json("The User already registered");
     }
   }
 

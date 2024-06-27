@@ -26,6 +26,9 @@ app.get("/user/login", (req, res) => {
 app.get("/user/register", (req, res) => {
   res.render("pages/register");
 });
+app.get("/user/dashboard", (req, res) => {
+  res.render("pages/dashboard");
+});
 
 app.listen(5000, (req, res) => {
   console.log(`The server is running on http://localhost:5000`);
