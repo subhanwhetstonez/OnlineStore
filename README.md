@@ -1031,3 +1031,11 @@ By following these guidelines and ensuring that bcrypt.hash receives the correct
 
 
 https://www.youtube.com/watch?v=7UQBMb8ZpuE&ab_channel=TheStoicProgrammers
+
+
+
+
+
+
+
+https://chatgpt.com/share/104cddba-9205-4bde-8f71-538205af6ea4
