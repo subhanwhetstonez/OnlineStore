@@ -19,9 +19,9 @@ class UserServices {
     return result;
   }
 
-  async userLogin(password, email) {
+  async userLogin(email) {
     const result = await this.db.query(
-      `SELECT * FROM users WHERE password = '${password}' AND email = '${email}'`
+      `SELECT * FROM users WHERE email = '${email}'`
     );
     return result;
   }

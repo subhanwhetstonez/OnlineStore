@@ -1,4 +1,3 @@
-const { hash } = require("crypto");
 const UserServices = require("../services/uservice.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -25,7 +24,7 @@ class UserControl {
     const hashed = await bcrypt.hash(password, salt);
 
     const data = await this.userService.userInput(username, hashed, email);
-    const userId = data.rows[0].id;
+    const userId = data.rows[0];
 
     const jwToken = jwt.sign({ userId }, JWT_SECRET, { expiresIn: "1h" });
 
@@ -34,14 +33,23 @@ class UserControl {
   }
 
   async userLog(req, res) {
-    // const { password, email } = req.body;
+    const { password, email } = req.body;
 
-    const data = await this.userService.userLogin(hashed, email);
+    const data = await this.userService.userLogin(email);
 
     if (data.rows.length === 0) {
       return res.status(401).json({ error: "Authentication failed" });
     }
-    const userId = data.rows[0].id;
+
+    const user = data.rows[0];
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Authentication failed" });
+    }
+
+    const userId = user.id;
     const jwToken = jwt.sign({ userId }, JWT_SECRET, { expiresIn: "1h" });
     res.json({ userId, jwToken });
   }

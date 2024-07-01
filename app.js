@@ -8,7 +8,10 @@ const ProductRoute = require("./routes/products.js");
 const OrderRoute = require("./routes/order.js");
 const ItemRoute = require("./routes/item.js");
 const verifyToken = require("./middleware/auth.js");
+const bodyparser = require("body-parser");
 
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
 app.use(express.json());
 app.set("view engine", "ejs");
 
@@ -21,9 +24,6 @@ app.use("/product", ProductRoute);
 app.use("/order", OrderRoute);
 app.use("/item", ItemRoute);
 
-// app.get("/user/login", (req, res) => {
-//   res.render("pages/login");
-// });
 app.get("/user/register", (req, res) => {
   res.render("pages/register");
 });

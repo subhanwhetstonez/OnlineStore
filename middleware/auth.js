@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../modules/config.js");
 
 function verifyToken(req, res, next) {
-  const token = req.headers.authorization;
+  const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
     return res.status(403).json({ error: "Token not provided" });
